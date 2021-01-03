@@ -1,5 +1,7 @@
 import React, {FC, useState, FormEvent} from 'react';
 import { useDispatch } from 'react-redux';
+import { setNotification } from '../store/actions';
+import { addList } from '../store/actions/listAction';
 import { List } from '../store/types';
 
 
@@ -25,6 +27,10 @@ const CreateNewList: FC =() =>{
             name: listName,
             task:[]
         }
+
+        dispatch(addList(newList));
+        dispatch(setNotification(`New list("${newList.name}") created!`));
+        setListName('');
     }
     return(
         <div className="card mb-5">
